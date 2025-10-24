@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Login</title>
 </head>
+
 <body>
     <main>
-        <div class="flex flex-col items-center place-content-center">
-            <form class="flex flex-col border-2 p-4" method="post">
+        <div class="flex flex-col items-center justify-center h-screen">
+            <h1 class="text text-3xl mb-4">Bienvenido a Alenkura</h1>
+            <form class="flex flex-col rounded-lg p-6 content-center shadow-2xl" method="post">
                 {% csrf_token %}
-                <h1 class="text text-3xl">Bienvenido a Alenkura</h1>
 
                 <label for="user">Nombre de usuario</label>
-                <input class="border-2 rounded-2 mb-2 p-2" name="username" type="text" placeholder="Ingrese su nombre de usuario" required>
+                <input class="border-1 rounded-lg mb-4 p-2 bg-white" name="username" type="text"
+                    placeholder="Ingrese su nombre de usuario" required>
 
                 <label for="passwd">Contraseña</label>
-                <input class="border-2 rounded-4 mb-2 p-2" name="password" type="password" placeholder="Ingrese su contraseña" required>
+                <input class="border-1 rounded-lg mb-4 p-2 bg-white" name="password" type="password"
+                    placeholder="Ingrese su contraseña" required>
 
-                <button class="border-2 rounded-4 p-2 bg-green-600 text-white hover:bg-green-700 cursor-pointer" type="submit">Iniciar sesión</button>
+                <button class="rounded-lg p-2 bg-blue-600 text-white hover:bg-blue-700 cursor-pointer"
+                    type="submit">Iniciar sesión</button>
             </form>
         </div>
     </main>
 </body>
+
 </html>
