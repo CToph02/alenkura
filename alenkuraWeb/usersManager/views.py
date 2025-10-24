@@ -1,19 +1,21 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from services.authService.login_service import Log_in, Log_out
+from .services.auth_service import log_in, log_out
+from .services.add_docent import create_docent
 
 # Create your views here.
 def login(request):
-    return Log_in(request)
+    return log_in(request)
 
 def logout(request):
-    return Log_out(request)
+    return log_out(request)
 
-def index(request):
-    return render(request, "index.html")
+def addDocent(request):
+    return render(request, "userManager/add_docent.html")
 
-def docent_dashboard(request):
-    return HttpResponse('docent')
+def create_docent(request):
+    return create_docent(request)
 
-def director_dashboard(request):
-    return HttpResponse('director')
+
+def index_director(request):
+    return render(request, "index_director.html")
