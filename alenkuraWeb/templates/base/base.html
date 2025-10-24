@@ -1,20 +1,102 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body>
-    <div>
-        <nav>
 
-        </nav>
-    </div>
-    <main>
-        {% block content %}
-        {% endblock %}
+<body class="flex flex-col h-screen bg-gray-100">
+    <nav class=" p-4 m-4 rounded-lg shadow-xl">
+        <div class="flex items-center justify-between">
+            <p class="text-3xl text-black">
+                Escuela Especial Alenkura
+            </p>
+            {% if user.is_superuser %}
+            <div>
+                <p class="text text-3xl text-black">
+                    Dashboard director
+                </p>
+            </div>
+            {% elif user.is_staff %}
+            <div>
+                <p class="text text-3xl text-black">
+                    Dashboard Docente
+                </p>
+            </div>
+            {% endif%}
+            <div class="flex">
+                <div class="flex items-center text-white mr-3 bg-green-800 rounded-lg p-2">
+                    <div class="hidden md:block">
+                        <span class="font-bold">Hola, {{ user.username }}!</span>
+                    </div>
+                </div>
+                <a href="{% url 'logout' %}"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold p-2 rounded-lg flex items-center transition duration-300 ease-in-out">
+                    <i class="fas fa-sign-out-alt mr-2"></i>
+                    Cerrar Sesión
+                </a>
+            </div>
+
+        </div>
+    </nav>
+    <main class="flex flex-row gap-4 items-center content h-full mb-4">
+        <div class="flex flex-col items-center h-full bg-white rounded-lg ml-4 p-4 shadow-xl gap-4">
+            {% if user.is_superuser%}
+                <button class=" bg-green-700 text-white cursor-pointer p-2 rounded-lg w-70 transition duration-300 ease-in-out hover:bg-green-800">
+                    <a href="{% url 'index_director' %}">
+                        Volver al inicio
+                    </a>                
+                </button>
+                <button class="text-black cursor-pointer p-2 rounded-lg w-70 transition duration-300 ease-in-out hover:bg-gray-200">
+                    <a href="{% url 'add_docent' %}">
+                        Agregar docente
+                    </a>                
+                </button>
+
+                <button class="bg-red-500 text-white cursor-pointer p-2 rounded-lg w-70 transition duration-300 ease-in-out hover:bg-red-600">
+                    Eliminar docente
+                </button>
+
+                <button class="text-black cursor-pointer p-2 rounded-lg w-70 transition duration-300 ease-in-out hover:bg-gray-200">
+                    Agregar estudiante
+                </button>
+
+                <button class="bg-red-500 text-white cursor-pointer p-2 rounded-lg w-70 transition duration-300 ease-in-out hover:bg-red-600">
+                    Eliminar estudiante
+                </button>
+
+            {% elif user.is_staff %}
+                <button class="text-black cursor-pointer p-2 rounded-lg w-70 transition duration-300 ease-in-out hover:bg-gray-200">
+                    Ver Proyecto de aula
+                </button>
+
+                <button class="text-black cursor-pointer p-2 rounded-lg w-70 transition duration-300 ease-in-out hover:bg-gray-200">
+                    Ver P.A.C.I
+                </button>
+
+                <button class="text-black cursor-pointer p-2 rounded-lg w-70 transition duration-300 ease-in-out hover:bg-gray-200">
+                    Ver Cursos
+                </button>
+
+                <button class="text-black cursor-pointer p-2 rounded-lg w-70 transition duration-300 ease-in-out hover:bg-gray-200">
+                    <a href="">
+                        Ver Notas
+                    </a>
+                </button>
+
+            {% endif %}
+        </div>
+
+        <div class="rounded-lg bg-white h-full w-full mr-4 p-4 shadow-xl">
+            {% block content %}
+            {% endblock %}
+        </div>
+
     </main>
 </body>
+
 </html>
