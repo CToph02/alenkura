@@ -1,0 +1,25 @@
+{% extends './../base/base.html' %}
+{% block title %}index{% endblock %}
+{% block content %}
+<form class="grid grid-cols-2 gap-4 rounded-lg p-4 content-center shadow-2xl" method="post" action="{% url 'create_docent'%}">
+    {% csrf_token %}
+
+    <div class="flex flex-col">
+        <label for="user">Nombre docente:</label>
+        <input class="border-1 rounded-lg p-2 bg-white" name="username" type="text" placeholder="Ingrese nombre docente" required>
+    </div>
+    
+    <div class="flex flex-col">
+        <label for="passwd">Correo docente:</label>
+        <input class="border-1 rounded-lg p-2 bg-white" name="email" type="email" placeholder="Ingrese correo" required>
+    </div>
+    
+    <div class="col-span-2 flex flex-col">
+        <label for="passwd">Número celular docente:</label>
+        <input class="border-1 rounded-lg p-2 bg-white" name="phone" type="tel" placeholder="Ingrese número celular" required>
+    </div>
+
+    <button class="rounded-lg p-2 bg-blue-600 text-white hover:bg-blue-700 cursor-pointer transition duration-300 ease-in-out" type="submit">Agregar
+        Docente</button>
+</form>
+{% endblock %}
