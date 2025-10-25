@@ -1,0 +1,122 @@
+{% extends './../base/base.html' %}
+{% block title %}index{% endblock %}
+{% block content %}
+<form class="grid grid-cols-2 gap-4 rounded-lg p-6 shadow-2xl bg-white border-2 border-gray-300" method="post"
+    action="{% url 'create_student' %}">
+    <h1 class="col-span-2 text-3xl font-semibold mb-2">Agregar estudiante</h1>
+    {% csrf_token %}
+    <div class="grid grid-cols-2 gap-4 rounded-lg shadow-xl p-4 border-2 border-gray-100">
+        <p class="col-span-2 text-2xl font-semibold">Datos del estudiante</p>
+        
+        <div class="flex flex-col">
+            <label for="user">RUT del estudiante:</label>
+            <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="rut" type="text"
+                placeholder="Ingrese RUT" required>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="user">Nombre del estudiante:</label>
+            <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="studentName" type="text"
+                placeholder="Ingrese nombre" required>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="passwd">Apellidos del estudiante:</label>
+            <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="studentLastname" type="text" placeholder="Ingrese apellidos"
+                required>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="passwd">Fecha de nacimiento del estudiante:</label>
+            <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="birthDate" type="date" placeholder="Ingrese fecha de nacimiento"
+                required>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="passwd">Diagnostico BAP del estudiante:</label>
+            <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="bapDiag" type="text" placeholder="Ingrese diagnostico BAP"
+                required>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="passwd">etnia del estudiante:</label>
+            <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="bapDiag" type="text" placeholder="Ingrese etnia">
+        </div>
+
+        <div class="flex flex-col">
+            <label for="passwd">Asigne curso al estudiante:</label>
+            <select class="p-2 rounded-lg border-2 border-gray-100" name="course" id="course">
+                <option value="1a">1A</option>
+                <option value="2b">2b</option>
+                <option value="...">...</option>
+            </select>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="passwd">Seleccione comuna del estudiante:</label>
+            <select class="p-2 rounded-lg border-2 border-gray-100" name="commune" id="commune">
+                <option value="tco">Temuco</option>
+                <option value="plc">Padre Las Casas</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 rounded-lg shadow-xl p-4 border-2 border-gray-100">
+        <p class="col-span-2 text-2xl font-semibold">Datos del apoderado</p>
+
+        <div class="flex flex-col">
+            <label for="passwd">RUT apoderado:</label>
+            <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="rutApoderado" type="text" placeholder="Ingrese RUT"
+                required>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="user">Nombre apoderado:</label>
+            <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="parentName" type="text"
+                placeholder="Ingrese nombre docente">
+        </div>
+
+        <div class="flex flex-col">
+            <label for="passwd">Apellido apoderado:</label>
+            <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="parentLastname" type="text" placeholder="Ingrese apellidos"
+                required>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="passwd">Correo apoderado:</label>
+            <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="email" type="email" placeholder="Ingrese correo">
+        </div>
+
+        <div class="flex flex-col">
+            <label for="passwd">Número celular apoderado:</label>
+            <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="phone" type="tel" placeholder="Ingrese número celular">
+        </div>
+
+        <div class="flex flex-col">
+            <label for="passwd">Ocupación del apoderado:</label>
+            <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="ocupation" type="text" placeholder="Ingrese ocupación"
+                required>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="passwd">Nivel academico:</label>
+            <select class="p-2 rounded-lg border-2 border-gray-100" name="typeDocent" id="typeDocent">
+                <option value="basic">Básica completa</option>
+                <option value="basic">Básica incompleta</option>
+                <option value="labor">Media completa</option>
+                <option value="labor">Media incompleta</option>
+                <option value="professional">Universitaria completa</option>
+                <option value="professional">Universitaria incompleta</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="col-span-2 flex justify-center mt-2">
+        <button class="rounded-lg px-6 py-2 bg-green-600 text-white hover:bg-green-700 transition duration-300 ease-in-out"
+                type="submit">
+            Agregar estudiante
+        </button>
+    </div>
+</form>
+{% endblock %}
