@@ -1,0 +1,33 @@
+{% extends './base/base.html' %}
+{% block title %}index{% endblock %}
+{% block content %}
+<h1 class="text-3xl mb-4">Lista de estudiantes del curso: </h1>
+<div class="flex flex-col gap-4 rounded-lg">
+    <table class="table-auto border-2 border-black w-full text-center">
+        <thead class="bg-blue-500 text-white">
+            <tr>
+                <th class="border-2 border-black px-4 py-2">Nombre</th>
+                <th class="border-2 border-black px-4 py-2">Apellido</th>
+                <th class="border-2 border-black px-4 py-2">Diagnóstico BAP</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+            {% for u in usuarios %}
+            <tr class="hover:bg-blue-100 transition">
+                <td class="border-2 border-black px-4 py-2 text-black">{{ u.username }}</td>
+                <td class="border-2 border-black px-4 py-2">a</td>
+                <td class="border-2 border-black px-4 py-2">s</td>
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="3">
+                    No hay estudiantes registrados.
+                </td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
