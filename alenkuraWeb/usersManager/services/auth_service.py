@@ -11,10 +11,10 @@ def log_in(request):
         login(request, user)
         
         if user.is_superuser:
-            return redirect('indexDirector')
+            return redirect('index_administracion')
         
         elif user.is_staff:
-            return redirect('docent_dashboard')
+            return redirect('index_docent')
             
     return render(request, 'login.html')
 
