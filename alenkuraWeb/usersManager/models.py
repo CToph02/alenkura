@@ -1,22 +1,12 @@
 from django.db import models
-
-class DateTime(models.Model):
-    createdAt = models.DateTimeField(auto_now_add=True, null=True)
-    updatedAt = models.DateTimeField(auto_now_add=True, null=True)
-
-    class Meta:
-        abstract = True
-
-class Rol(models.Model):
-    rol_id = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=15)
+from coreBD.models import DateTime, Rol
 
 class User(DateTime):
     user_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=150)
     active = models.BooleanField()
-    fk_rol = models.ForeignKey("Rol", on_delete=models.CASCADE)
+    fk_rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
     fk_category = models.ForeignKey("UserCategory", on_delete=models.CASCADE)
 
 class UserCategory(DateTime):
