@@ -1,8 +1,14 @@
 {% extends './base/base.html' %}
 {% block title %}index{% endblock %}
 {% block content %}
-<h1 class="text-3xl mb-4">Lista de estudiantes del curso: </h1>
-<div class="flex flex-col gap-4 rounded-lg">
+<div class="flex justify-between mb-4">
+    <h1 class="text-3xl">Lista de docentes: </h1>
+    <div class="flex gap-4">
+        <input class="border-2 border-gray-300 rounded-lg p-2" type="text" name="searchdocente" id="searchdocente" placeholder="Buscar docente">
+        <a href="" class="flex justify-center bg-blue-500 items-center text-white p-2 rounded-lg w-30 text-center transform duration-300 ease-in-out hover:scale-102">Buscar</a>
+    </div>    
+</div>
+<div class="flex flex-col gap-4 rounded-lg overflow-y-auto">
     <table class="table-auto border-2 border-black w-full text-center">
         <thead class="bg-blue-500 text-white">
             <tr>

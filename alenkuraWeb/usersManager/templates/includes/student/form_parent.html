@@ -1,0 +1,51 @@
+<div class="grid grid-cols-2 gap-4 rounded-lg shadow-xl p-4 border-2 border-gray-100">
+    <p class="col-span-2 text-2xl font-semibold">Datos del apoderado</p>
+
+    <div class="flex flex-col">
+        <label for="passwd">RUT apoderado:</label>
+        <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="rutApoderado" type="text"
+            placeholder="Ingrese RUT" required>
+    </div>
+
+    <div class="flex flex-col">
+        <label for="user">Nombre apoderado:</label>
+        <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="parentName" type="text"
+            placeholder="Ingrese nombre docente">
+    </div>
+
+    <div class="flex flex-col">
+        <label for="passwd">Apellido apoderado:</label>
+        <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="parentLastname" type="text"
+            placeholder="Ingrese apellidos" required>
+    </div>
+
+    <div class="flex flex-col">
+        <label for="passwd">Correo apoderado:</label>
+        <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="email" type="email"
+            placeholder="Ingrese correo">
+    </div>
+
+    <div class="flex flex-col">
+        <label for="passwd">Número celular apoderado:</label>
+        <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="phone" type="tel"
+            placeholder="Ingrese número celular">
+    </div>
+
+    <div class="flex flex-col">
+        <label for="passwd">Ocupación del apoderado:</label>
+        <input class="rounded-lg p-2 bg-white border-2 border-gray-100" name="ocupation" type="text"
+            placeholder="Ingrese ocupación" required>
+    </div>
+
+    <div class="flex flex-col">
+        <label for="passwd">Nivel academico:</label>
+        <select class="p-2 rounded-lg border-2 border-gray-100" name="typeDocent" id="typeDocent">
+            <option value="basic">Básica completa</option>
+            <option value="basic">Básica incompleta</option>
+            <option value="labor">Media completa</option>
+            <option value="labor">Media incompleta</option>
+            <option value="professional">Universitaria completa</option>
+            <option value="professional">Universitaria incompleta</option>
+        </select>
+    </div>
+</div>

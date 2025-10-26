@@ -1,0 +1,21 @@
+{% extends './../base/base.html' %}
+{% block title %}index{% endblock %}
+{% block content %}
+<form class="grid grid-cols-2 gap-4 rounded-lg p-6 shadow-2xl bg-white border-2 border-gray-300" method="post"
+    action="{% url 'create_student' %}">
+    <h1 class="col-span-2 text-3xl font-semibold mb-2">Agregar estudiante</h1>
+    {% csrf_token %}
+
+    {% include 'includes/student/form_student.html' %}
+    
+    {% include 'includes/student/form_parent.html' %}
+    
+
+    <div class="col-span-2 flex justify-center mt-2">
+        <button class="rounded-lg px-6 py-2 bg-green-600 text-white hover:bg-green-700 transition duration-300 ease-in-out"
+                type="submit">
+            Agregar estudiante
+        </button>
+    </div>
+</form>
+{% endblock %}
