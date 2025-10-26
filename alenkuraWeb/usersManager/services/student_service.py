@@ -15,5 +15,5 @@ def delete_student(request):
 def update_student(request, id):
     pass
 
-def delete_student(request, id):
+def search_student(request, id):
     pass
