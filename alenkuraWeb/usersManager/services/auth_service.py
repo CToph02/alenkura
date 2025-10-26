@@ -21,3 +21,6 @@ def log_in(request):
 def log_out(request):
     logout(request)
     return redirect('login')
+
+def register_docent(request):
+    pass
