@@ -1,8 +1,8 @@
 from django.contrib.auth.models import Group, User
 from django.shortcuts import render
 from .services.auth_service import log_in, log_out
-from .services.add_docent import add_docent
-from .services.add_students import add_student
+from .services.docent_service import add_docent
+from .services.student_service import add_student
 
 # Create your views here.
 def login(request):
@@ -48,3 +48,10 @@ def listaestudiantes(request):
         "usuarios": usuarios
     }
     return render(request, "listaestudiantes.html", context)
+
+def listadocentes(request):
+    usuarios = User.objects.all()
+    context = {
+        "usuarios": usuarios
+    }
+    return render(request, "listadocentes.html", context)
