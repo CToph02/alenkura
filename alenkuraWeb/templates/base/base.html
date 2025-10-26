@@ -59,7 +59,7 @@
                     Agregar docente
                 </a>
 
-                <a class="border-2 border-gray-100 text-center text-red-700 cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200">
+                <a class="border-2 border-gray-100 text-center text-red-700 cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200 " href="{% url 'listadocentes' %}">
                     Lista de docentes
                 </a>
 
@@ -67,7 +67,7 @@
                     Agregar estudiante
                 </a>
 
-                <a class="border-2 border-gray-100 text-center text-red-700 cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200">
+                <a class="border-2 border-gray-100 text-center text-red-700 cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'listaestudiantes' %}">
                     Lista de estudiantes
                 </a>
 
@@ -92,6 +92,12 @@
 
                 <a class="border-2 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'notas' %}">
                     Ver Notas
+                </a>
+                <a class="border-2 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'notas' %}">
+                    Volver a seleccionar cursos
+                </a>
+                <a class="border-2 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'notas' %}">
+                    Volver a seleccionar nivel
                 </a>
 
             {% endif %}
