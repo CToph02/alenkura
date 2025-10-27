@@ -11,6 +11,3 @@ class DateTime(models.Model):
 class Asignaturas(models.Model):
     nombre_asignatura = models.CharField(max_length=50)
 
-class Rol(models.Model):
-    rol_id = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=15)
