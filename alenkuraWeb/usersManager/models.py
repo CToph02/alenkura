@@ -1,13 +1,5 @@
 from django.db import models
-from coreBD.models import DateTime, Rol
-
-class User(DateTime):
-    user_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100)
-    email = models.CharField(max_length=150)
-    active = models.BooleanField()
-    fk_rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
-    fk_category = models.ForeignKey("UserCategory", on_delete=models.CASCADE)
+from coreBD.models import DateTime
 
 class Rol(models.Model):
     rol_id = models.AutoField(primary_key=True)
@@ -19,6 +11,14 @@ class UserCategory(DateTime):
     
     def __str__(self):
         return f"{self.name_category}"
+    
+class User(DateTime):
+    user_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=150)
+    active = models.BooleanField()
+    fk_rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
+    fk_category = models.ForeignKey(UserCategory, on_delete=models.CASCADE)
 
 class StudentParent(DateTime):
     parent_id = models.AutoField(primary_key=True)
