@@ -9,6 +9,10 @@ class User(DateTime):
     fk_rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
     fk_category = models.ForeignKey("UserCategory", on_delete=models.CASCADE)
 
+class Rol(models.Model):
+    rol_id = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=15)
+
 class UserCategory(DateTime):
     category_id = models.AutoField(primary_key=True)
     name_category = models.CharField(max_length=20)
