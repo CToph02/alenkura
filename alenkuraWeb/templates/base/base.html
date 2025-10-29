@@ -20,7 +20,7 @@
     <nav class="p-4 m-4 rounded-lg shadow-xl bg-white border-2 border-gray-300">
         <div class="flex items-center justify-between">
             <p class="text-3xl text-black">
-                Escuela Especial Alenkura
+                Escuela Especial Alenkura 
             </p>
             {% if user.is_superuser %}
             <div>
@@ -28,17 +28,17 @@
                     Dashboard administración
                 </p>
             </div>
-            {% elif user.is_staff %}
+            {% elif user.is_docent %}
             <div>
                 <p class="text text-3xl text-black text-center">
-                    Dashboard Docente
+                    Dashboard Docente nivel: {{ user.rol }}
                 </p>
             </div>
             {% endif%}
             <div class="flex">
                 <div class="flex items-center text-white mr-3 bg-blue-600 rounded-lg p-2">
                     <div class="hidden md:block">
-                        <span class="font-bold">Hola, {{ user.username }}!</span>
+                        <span class="font-bold">Hola, {{ user.name }}!</span>
                     </div>
                 </div>
                 <a href="{% url 'logout' %}"
@@ -71,7 +71,7 @@
                     Lista de estudiantes
                 </a>
 
-            {% elif user.is_staff %}
+            {% elif user.is_docent %}
                 <a class="text-center bg-emerald-600 text-white cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-emerald-700" href="{% url 'index_docent' %}">
                     Volver al inicio
                 </a>
