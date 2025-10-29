@@ -32,10 +32,20 @@
     <div class="flex flex-col">
         <label for="typeDocent" class="font-medium">Seleccione el nivel del docente:</label>
         <select class="border rounded-lg p-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 border-2 border-gray-100"
-                name="typeDocent" id="typeDocent" required>
-            {% for group in grupos %}
-                <option value="{{ group.name }}">{{ group.name }}</option>
+                name="nivel" id="nivel" required>
+            {% for r in rol %}
+                <option value="{{ r.rol }}">{{ r.rol }}</option>
             {% endfor %}
+        </select>
+    </div>
+
+    <div class="flex flex-col">
+        <label for="typeDocent" class="font-medium">Seleccione el curso del docente:</label>
+        <select class="border rounded-lg p-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 border-2 border-gray-100"
+                name="curso" id="curso" required>
+                {% for c in curso %}
+                    <option value="{{ c.curso }}">{{ c.curso }} - {{ c.fk_nivel }}</option>
+                {% endfor %}
         </select>
     </div>
 
@@ -49,3 +59,28 @@
 </form>
 
 {% endblock %}
+
+<script>
+    document.getElementById('nivel').addEventListener('change', function(){
+        const nivelId = this.value;
+        const curso = document.getElementById('curso')
+        curso.innerHTML = '<option>Cargando...</option>'
+        console.log("Hola")
+
+        if (nivelId){
+            fetch("cursoPorNivel/?nivel${nivelId}")
+            .then(response => response.json)
+            .then(data =>{
+                curso.innerHTML = '<option value="{{ group.name }}">>-- Seleccione un curso --<</option>'
+                data.cursos.forEach(curso => {
+                    const option = document.createElement('option');
+                    option.value = curso.id;
+                    option.textContent = curso.curso;
+                    curso.appendChild(option);
+                });
+            });
+        }else{
+            curso.innerHTML = '<option value="{{ group.name }}">>-- Seleccione un curso --<</option>'
+        }
+    });
+</script>
