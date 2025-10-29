@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-def add_student(request):
+def create_student(request):
     username = request.POST.get('username')
     email = request.POST.get('email')
     phone = request.POST.get('phone')
