@@ -1,8 +1,11 @@
-from django.contrib.auth.models import Group, User
+#from django.contrib.auth.models import User
+#from .models import Curso
+from .models import User
+from coreBD.models import Curso, Rol
 from django.shortcuts import render
 from .services.auth_service import log_in, log_out
-from .services.docent_service import add_docent
-from .services.student_service import add_student
+from .services.docent_service import create_docent, get_curso_por_nivel
+from .services.student_service import create_student
 
 # Create your views here.
 def login(request):
@@ -11,21 +14,25 @@ def login(request):
 def logout(request):
     return log_out(request)
 
-def addDocent(request):
-    grupos = Group.objects.all()
+def docent(request):
+    rol = Rol.objects.all()
+    cursos = Curso.objects.all()
+
     context = {
-        'grupos': grupos
+        'rol': rol,
+        'curso': cursos
     }
+
     return render(request, "userManager/add_docent.html", context)
 
 def addStudent(request):
     return render(request, "userManager/add_student.html")
 
 def create_docent(request):
-    return add_docent(request)
+    return create_docent(request)
 
 def create_student(request):
-    return add_student(request)
+    return create_student(request)
 
 def index_administracion(request):
     return render(request, "index_administracion.html")
@@ -55,3 +62,6 @@ def listadocentes(request):
         "usuarios": usuarios
     }
     return render(request, "listadocentes.html", context)
+
+def cursoPorNivel(request):
+    return get_curso_por_nivel(request)
