@@ -4,9 +4,13 @@
 <div class="flex justify-between mb-4">
     <h1 class="text-3xl">Lista de estudiantes del curso: </h1>
     <div class="flex gap-4">
-        <input class="border-2 rounded-lg p-2" type="text" name="searchdocente" id="searchdocente" placeholder="Buscar estudiante">
-        <a href="" class="flex justify-center bg-blue-500 items-center text-white p-2 rounded-lg w-30 text-center transform duration-300 ease-in-out hover:scale-102">Buscar</a>
-    </div>    
+        <form class="flex gap-4" action="{% url 'buscar_estudiante' %}" method="post">
+            {% csrf_token %}
+            <input class="border-2 rounded-lg p-2" type="text" name="search_estudiante" id="search_estudiante"
+                placeholder="Buscar estudiante">
+            <button type="submit" class="flex justify-center bg-blue-500 items-center text-white p-2 rounded-lg w-30 text-center transform duration-300 ease-in-out hover:scale-102">Buscar</button>
+        </form>
+    </div>
 </div>
 <div class="flex flex-col gap-4 rounded-lg overflow-y-auto">
     <table class="table-auto border-2 border-black w-full text-center">
@@ -20,14 +24,14 @@
         <tbody class="bg-white divide-y divide-gray-200">
             {% for u in usuarios %}
             <tr class="hover:bg-blue-100 transition">
-                <td class="border-2 border-black px-4 py-2 text-black">{{ u.username }}</td>
-                <td class="border-2 border-black px-4 py-2">a</td>
-                <td class="border-2 border-black px-4 py-2">s</td>
+                <td class="border-2 border-black px-4 py-2 text-black">{{ u.name }}</td>
+                <td class="border-2 border-black px-4 py-2">{{ u.email }}</td>
+                <td class="border-2 border-black px-4 py-2">{{ u.rol }}</td>
             </tr>
 
             {% empty %}
             <tr>
-                <td colspan="3">
+                <td colspan="5">
                     No hay estudiantes registrados.
                 </td>
             </tr>
