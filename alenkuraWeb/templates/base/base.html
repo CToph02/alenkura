@@ -49,13 +49,13 @@
 
         </div>
     </nav>
-    <main class="flex flex-row gap-4 items-center content h-full mb-4 ">
-        <div class="flex flex-col items-center h-full bg-white rounded-lg ml-4 p-4 shadow-xl gap-4 border-2 border-gray-300">
+    <main class="flex flex-row items-center content h-full mb-4 ">
+        <div class="flex flex-col items-center h-full bg-white rounded-tl-lg rounded-bl-lg ml-4 p-4 shadow-xl gap-4 border-2 border-gray-300">
             {% if user.is_superuser%}
                 <a class="text-center bg-emerald-500 text-white cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-emerald-600" href="{% url 'index_administracion' %}">
                     Volver al inicio
                 </a>
-                <a class="border-2 border-gray-100 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'add_docent' %}">
+                <a class="border-2 border-gray-100 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'docent' %}">
                     Agregar docente
                 </a>
 
@@ -67,7 +67,7 @@
                     Agregar estudiante
                 </a>
 
-                <a class="border-2 border-gray-100 text-center text-red-700 cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'listaestudiantes' %}">
+                <a class="border-2 border-gray-100 text-center text-red-700 cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'lista_estudiantes' %}">
                     Lista de estudiantes
                 </a>
 
@@ -78,7 +78,7 @@
                 <a class="border-2 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200">
                     Ver Proyecto de aula
                 </a>
-                <a class="border-2 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'listaestudiantes' %}">
+                <a class="border-2 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'lista_estudiantes' %}">
                     Ver lista de estudiantes
                 </a>
 
@@ -103,7 +103,7 @@
             {% endif %}
         </div>
 
-        <div class="rounded-lg bg-white h-full w-full mr-4 p-4 shadow-xl border-2 border-gray-300">
+        <div class="rounded-tr-lg rounded-br-lg bg-white h-full w-full mr-4 p-4 shadow-xl border-t-2 border-r-2 border-b-2 border-gray-300">
             {% block content %}
             {% endblock %}
         </div>
