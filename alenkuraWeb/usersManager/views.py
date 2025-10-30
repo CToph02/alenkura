@@ -5,7 +5,7 @@ from coreBD.models import Curso, Rol
 from django.shortcuts import render
 from .services.auth_service import log_in, log_out
 from .services.docent_service import create_docent, get_curso_por_nivel
-from .services.student_service import create_student
+from .services.student_service import create_student, search_student
 
 # Create your views here.
 def login(request):
@@ -15,7 +15,7 @@ def logout(request):
     return log_out(request)
 
 def docent(request):
-    rol = Rol.objects.all()
+    rol = Rol.objects.exclude(rol='Director')
     cursos = Curso.objects.all()
 
     context = {
@@ -65,3 +65,6 @@ def listadocentes(request):
 
 def cursoPorNivel(request):
     return get_curso_por_nivel(request)
+
+def buscar_estudiante(request):
+    return search_student(request)
