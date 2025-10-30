@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'coreBD',
     'usersManager',
     'pedManager',
-    'notasManager'
+    'notasManager',
+    'docentAppManager',
+    'directorAppManager'
 ]
 
 MIDDLEWARE = [
