@@ -15,7 +15,7 @@ class Asignatura(models.Model):
         return f"{self.asignatura}"
 
 class Rol(models.Model):
-    rol = models.CharField(max_length=30, unique=True)
+    rol = models.CharField(max_length=30, unique=True, null=True)
 
     def __str__(self):
         return f"{self.rol}"

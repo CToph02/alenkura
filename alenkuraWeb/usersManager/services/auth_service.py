@@ -2,12 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 
 def log_in(request):
-    username = request.POST.get('username')
+    email = request.POST.get('email')
     password = request.POST.get('password')
-    print(username)
+    print(email)
     print(password)
 
-    user = authenticate(name=username, password=password)
+    user = authenticate(email=email, password=password)
 
     print(user)
 
@@ -16,7 +16,7 @@ def log_in(request):
         print(user.rol)
 
         if user.is_superuser:
-            return redirect('index_administracion')
+            return redirect('index_director')
         
         elif user.is_docent:
             return redirect('index_docent')

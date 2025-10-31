@@ -9,6 +9,7 @@
     <title>{% block title %}{% endblock %}</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
         body {
             font-family: 'Manrope', sans-serif;
         }
@@ -16,21 +17,21 @@
 
 </head>
 
-<body class="flex flex-col h-screen bg-emerald-50">
-    <nav class="p-4 m-4 rounded-lg shadow-xl bg-white border-2 border-gray-300">
+<body class="flex flex-col h-screen bg-gray-900">
+    <nav class="p-4 m-4 rounded-lg shadow-xl bg-gray-800 border-1 border-black">
         <div class="flex items-center justify-between">
-            <p class="text-3xl text-black">
-                Escuela Especial Alenkura 
+            <p class="text-3xl text-white">
+                Escuela Especial Alenkura
             </p>
-            {% if user.is_superuser %}
+            {% if user.is_director or user.is_superuser %}
             <div>
-                <p class="text text-3xl text-black text-center">
-                    Dashboard administración
+                <p class="text text-3xl text-white text-center">
+                    Dashboard Director
                 </p>
             </div>
             {% elif user.is_docent %}
             <div>
-                <p class="text text-3xl text-black text-center">
+                <p class="text text-3xl text-white text-center">
                     Dashboard Docente nivel: {{ user.rol }}
                 </p>
             </div>
@@ -42,68 +43,82 @@
                     </div>
                 </div>
                 <a href="{% url 'logout' %}"
-                    class="bg-red-600 hover:bg-red-700 text-white font-semibold p-2 rounded-lg flex items-center transform duration-300 ease-in-out hover:scale-102">
+                    class="bg-red-600 hover:bg-red-700 text-white font-semibold p-2 rounded-lg flex items-center transform duration-200 ease-in-out">
                     Cerrar Sesión
                 </a>
             </div>
 
         </div>
     </nav>
-    <main class="flex flex-row items-center content h-full mb-4 ">
-        <div class="flex flex-col items-center h-full bg-white rounded-tl-lg rounded-bl-lg ml-4 p-4 shadow-xl gap-4 border-2 border-gray-300">
-            {% if user.is_superuser%}
-                <a class="text-center bg-emerald-500 text-white cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-emerald-600" href="{% url 'index_administracion' %}">
-                    Volver al inicio
-                </a>
-                <a class="border-2 border-gray-100 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'docent' %}">
-                    Agregar docente
-                </a>
+    <main class="flex flex-row items-center content h-full mb-4">
+        <div class="flex flex-col items-center h-full bg-gray-800 rounded-tl-lg rounded-bl-lg ml-4 p-4 shadow-xl gap-4 border-1 border-black">
+            {% if user.is_director or user.is_superuser %}
+            <a class="text-center bg-green-600 text-white cursor-pointer p-2 rounded-lg w-70 transform duration-200 ease-in-out hover:bg-green-700"
+                href="{% url 'index_director' %}">
+                Volver al inicio
+            </a>
+            <a class="text-center text-white cursor-pointer p-2 rounded-lg w-70 transform duration-200 ease-in-out hover:bg-gray-700"
+                href="{% url 'index_docent' %}">
+                Agregar docente
+            </a>
 
-                <a class="border-2 border-gray-100 text-center text-red-700 cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200 " href="{% url 'listadocentes' %}">
-                    Lista de docentes
-                </a>
+            <a class="text-center text-red-500 cursor-pointer p-2 rounded-lg w-70 transform duration-200 ease-in-out hover:bg-gray-700 "
+                href="{% url 'lista_docentes' %}">
+                Lista de docentes
+            </a>
 
-                <a class="border-2 border-gray-100 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'add_student' %}">
-                    Agregar estudiante
-                </a>
+            <a class="text-center text-white cursor-pointer p-2 rounded-lg w-70 transform duration-200 ease-in-out hover:bg-gray-700"
+                href="{% url 'add_student' %}">
+                Agregar estudiante
+            </a>
 
-                <a class="border-2 border-gray-100 text-center text-red-700 cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'lista_estudiantes' %}">
-                    Lista de estudiantes
-                </a>
+            <a class="text-center text-red-500 cursor-pointer p-2 rounded-lg w-70 transform duration-200 ease-in-out hover:bg-gray-700"
+                href="{% url 'lista_estudiantes' %}">
+                Lista de estudiantes
+            </a>
 
             {% elif user.is_docent %}
-                <a class="text-center bg-emerald-600 text-white cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-emerald-700" href="{% url 'index_docent' %}">
-                    Volver al inicio
-                </a>
-                <a class="border-2 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200">
-                    Ver Proyecto de aula
-                </a>
-                <a class="border-2 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'lista_estudiantes' %}">
-                    Ver lista de estudiantes
-                </a>
+            <div class="flex flex-col place-content-between h-full">
+                <div class="flex flex-col">
+                    <a class="text-center bg-green-600 text-white cursor-pointer p-2 rounded-lg w-70 transform duration-200 ease-in-out hover:bg-green-700"
+                        href="{% url 'index_docent' %}">
+                        Volver al inicio
+                    </a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <a
+                        class="border-1 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-200 ease-in-out hover:bg-gray-200">
+                        Ver Proyecto de aula
+                    </a>
 
-                <a class="border-2 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'paci' %}">
-                    Ver P.A.C.I
-                </a>
+                    <a class="border-1 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-200 ease-in-out hover:bg-gray-200"
+                        href="{% url 'lista_estudiantes' %}">
+                        Ver lista de estudiantes
+                    </a>
 
-                <a class="border-2 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'cursos' %}">
-                    Ver Cursos
-                </a>
+                    <a class="border-1 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-200 ease-in-out hover:bg-gray-200"
+                        href="{% url 'cursos' %}">
+                        Ver Cursos
+                    </a>
+                </div>
 
-                <a class="border-2 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'notas' %}">
-                    Ver Notas
-                </a>
-                <a class="border-2 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'notas' %}">
-                    Volver a seleccionar cursos
-                </a>
-                <a class="border-2 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-300 ease-in-out hover:scale-102 hover:bg-gray-200" href="{% url 'notas' %}">
-                    Volver a seleccionar nivel
-                </a>
-
+                <div class="flex flex-col gap-4">
+                    <a class="border-1 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-200 ease-in-out hover:bg-gray-200"
+                        href="{% url 'notas' %}">
+                        Volver a seleccionar cursos
+                    </a>
+                    <a class="border-1 border-gray-200 text-center text-black cursor-pointer p-2 rounded-lg w-70 transform duration-200 ease-in-out hover:bg-gray-200"
+                        href="{% url 'notas' %}">
+                        Volver a seleccionar nivel
+                    </a>
+                </div>
+            </div>
             {% endif %}
+
         </div>
 
-        <div class="rounded-tr-lg rounded-br-lg bg-white h-full w-full mr-4 p-4 shadow-xl border-t-2 border-r-2 border-b-2 border-gray-300">
+        <div
+            class="rounded-tr-lg rounded-br-lg bg-gray-800 h-full w-full mr-4 p-4 shadow-xl border-t-1 border-r-1 border-b-1 border-black">
             {% block content %}
             {% endblock %}
         </div>

@@ -19,14 +19,29 @@
                 <th class="border-2 border-black px-4 py-2">Nombre</th>
                 <th class="border-2 border-black px-4 py-2">Apellido</th>
                 <th class="border-2 border-black px-4 py-2">Diagnóstico BAP</th>
+                <th class="border-2 border-black px-4 py-2">Curso</th>
+                <th class="border-2 border-black px-4 py-2">Apoderado</th>
+                <th class="border-2 border-black px-4 py-2">Correo apoderado</th>
+                <th class="border-2 border-black px-4 py-2">Acciones</th>
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-            {% for u in usuarios %}
+            {% for e in estudiantes %}
             <tr class="hover:bg-blue-100 transition">
-                <td class="border-2 border-black px-4 py-2 text-black">{{ u.name }}</td>
-                <td class="border-2 border-black px-4 py-2">{{ u.email }}</td>
-                <td class="border-2 border-black px-4 py-2">{{ u.rol }}</td>
+                <td class="border-2 border-black px-4 py-2 text-black">{{ e.name }}</td>
+                <td class="border-2 border-black px-4 py-2">{{ e.lastName }}</td>
+                <td class="border-2 border-black px-4 py-2">{{ e.bapDiag }}</td>
+                <td class="border-2 border-black px-4 py-2">{{ e.grade }}</td>
+                <td class="border-2 border-black px-4 py-2">{{ e.fk_parent }}</td>
+                <td class="border-2 border-black px-4 py-2">{{ e.fk_parent.mail }}</td>
+                <td class="flex justify-center px-4 py-2 gap-4">
+                    <a href="{% url 'paci' %}" class="bg-green-500 w-25 p-2 rounded-lg text-white hover:bg-green-600 cursor-pointer">
+                        Ver P.A.C.I.
+                    </a>
+                    <a href="{% url 'notas' %}" class="bg-blue-500 w-25 p-2 rounded-lg text-white hover:bg-blue-600 cursor-pointer">
+                        Ver notas
+                    </a>
+                </td>
             </tr>
 
             {% empty %}

@@ -1,9 +1,9 @@
 {% extends './../base/base.html' %}
 {% block title %}index{% endblock %}
 {% block content %}
-<form class="grid grid-cols-2 gap-4 rounded-lg p-6 shadow-2xl bg-white border-2 border-gray-300" method="post"
+<form class="grid grid-cols-2 gap-4 rounded-lg p-6 shadow-2xl bg-gray-700" method="post"
     action="{% url 'create_student' %}">
-    <h1 class="col-span-2 text-3xl font-semibold mb-2">Agregar estudiante</h1>
+    <h1 class="col-span-2 text-3xl font-semibold mb-2 text-white">Agregar estudiante</h1>
     {% csrf_token %}
 
     {% include 'includes/student/form_student.html' %}

@@ -6,7 +6,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 
-from .models import User, StudentParent, Student
+from .models import User
 # Register your models here.
 
 class UserCreation(forms.ModelForm):
@@ -17,7 +17,7 @@ class UserCreation(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['name', 'email']
+        fields = ['email']
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -39,7 +39,7 @@ class UserChange(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['name', 'email', 'password', 'is_admin', 'is_docent', 'is_active']
+        fields = ['name', 'email', 'password', 'is_admin', 'is_docent', 'is_director', 'is_active']
 
 class UserAdmin(BaseUserAdmin):
     readonly_fields = ['createdAt', 'updatedAt']
@@ -48,7 +48,7 @@ class UserAdmin(BaseUserAdmin):
     add_form = UserCreation
 
     #Muestra los campos en la tabla de usuarios de la tabla User
-    list_display = ['name', 'email', 'is_docent', 'is_admin', 'rol']
+    list_display = ['name', 'email', 'is_docent', 'is_director', 'is_admin', 'rol']
 
     #Muestra una lista para los filtros
     list_filter = ['is_admin', 'rol']
@@ -56,7 +56,7 @@ class UserAdmin(BaseUserAdmin):
     #Esto es lo que aparece al modificar
     fieldsets = [
         (None, {"fields": ['name', 'email', 'password']}),
-        ('Permisos', {'fields': ['is_admin', 'is_active', 'is_docent']}),
+        ('Permisos', {'fields': ['is_admin', 'is_docent', 'is_director', 'is_active']}),
     ]
 
     #Aquí se mostrarán los campos para el formulario de creación de usuarios en admin
@@ -64,7 +64,7 @@ class UserAdmin(BaseUserAdmin):
         (
             None, {
                 'classes': ['wide'],
-                'fields': ['name', 'email', 'password1', 'password2', 'rol', 'is_docent'],
+                'fields': ['name', 'email', 'password1', 'password2', 'rol', 'is_docent', 'is_director'],
             },
         ),
     ]
@@ -74,11 +74,9 @@ class UserAdmin(BaseUserAdmin):
     is_staff.boolean = True
 
 
-    search_fields = ['name', 'email']
-    ordering = ['name']
+    search_fields = ['email']
+    ordering = ['email']
     filter_horizontal = []
 
 admin.site.register(User, UserAdmin)
 admin.site.unregister(Group)
-admin.site.register(Student)
-admin.site.register(StudentParent)
