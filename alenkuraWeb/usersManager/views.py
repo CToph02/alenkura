@@ -6,8 +6,6 @@ from docentAppManager.models import Student, StudentParent
 from coreBD.models import Curso, Rol
 from django.shortcuts import render
 from .services.auth_service import log_in, log_out
-from .services.docent_service import create_docent, get_curso_por_nivel
-from .services.student_service import create_student, search_student
 
 # Create your views here.
 def login(request):
@@ -27,27 +25,6 @@ def docent(request):
 
     return render(request, "userManager/add_docent.html", context)
 
-def add_student(request):
-    return render(request, "userManager/add_student.html")
-
-def create_docent(request):
-    return create_docent(request)
-
-def create_student(request):
-    return create_student(request)
-
-# def index_administracion(request):
-#     return render(request, "index_administracion.html")
-
-# def index_docent(request):
-#     return render(request, "index_docent.html")
-
-def a(request):
-    return HttpResponse("a")
-
-def b(request):
-    return HttpResponse("b")
-
 def paci(request):
     return render(request, "paci.html")
 
@@ -56,23 +33,3 @@ def cursos(request):
 
 def notas(request):
     return render(request, "notas.html")
-
-def lista_estudiantes(request):
-    estudiantes = Student.objects.all()
-    context = {
-        "estudiantes": estudiantes
-    }
-    return render(request, "listaestudiantes.html", context)
-
-def lista_docentes(request):
-    usuarios = User.objects.all()
-    context = {
-        "usuarios": usuarios
-    }
-    return render(request, "listadocentes.html", context)
-
-def curso_por_nivel(request):
-    return get_curso_por_nivel(request)
-
-def buscar_estudiante(request):
-    return search_student(request)
